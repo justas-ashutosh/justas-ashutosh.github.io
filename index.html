@@ -3,139 +3,433 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-<link rel="icon" href="https://pbs.twimg.com/profile_images/862445411017138176/ZZV_0Xlt.jpg" type="image/jpg" />
-<title>Fire Cloud</title>
+<link rel="icon" href="http://gyan.fragnel.edu.in:2222/moodle/data/agnel.jpg" type="image/jpg" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+	// Animate loader off screen
+	$(".se-pre-con").fadeOut("slow");;
+});
+</script>
+<!-- MDL 
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>-->
+<title>Developer Student Club</title>
+<style type="text/css">
+body{
+  background-image: url(http://forums.crackberry.com/attachments/blackberry-10-wallpapers-f308/137432d1361639896t-z10-wallpaper-set-z10-music.jpg);
+  background-repeat:repeat;
+}
+.sep {
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+	margin: 10px;
+	display: inline-block;
+}
+
+.text {
+	text-decoration: none;
+	color: black;
+	font-size: 20px;
+	font-family: cursive;
+	text-align: center;
+}
+
+.text1 {
+	text-decoration: none;
+	color: black;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+
+#sharp {
+	padding: 4px;
+	margin: 7px;
+	border: 2px solid gray;
+}
+
+.cc {
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	margin: 15px;
+	padding: 10px;
+}
+.carosel {
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	margin: 15px;
+	padding: 10px;
+}
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(https://digitalsynopsis.com/wp-content/uploads/2016/06/loading-animations-preloader-gifs-ui-ux-effects-18.gif) center no-repeat #fff;
+}
+</style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-<a class="navbar-brand" href="#">
-    <img src="myimages/firebase.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-    Fire Cloud
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="about.html">About</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-<br>
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li> 
-  </ol>
-  <div  id="one" class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" class="img-fluid" alt="Responsive image" src="myimages/1.jpg" height="250px" width="350px" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" class="img-fluid" alt="Responsive image" src="myimages/5.jpg" height="250px" width="350px" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" class="img-fluid" alt="Responsive image" src="myimages/2.jpg" height="250px" width="350px" alt="Third slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" class="img-fluid" alt="Responsive image" src="myimages/3.jpg" height="250px" width="350px" alt="Third slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" class="img-fluid" alt="Responsive image" src="myimages/4.jpg" height="250px" width="350px" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-<br>
-<div>
-<div class="container-fluid" >	
-<div class="row" id="one">
-  <div class="col-sm">
-    <div class="card">
-    <img class="card-img-top" src="myimages/weather.png"  alt="Card image cap" height="150px" width="200px">
-      <div class="card-body">
-        <h4 class="card-title"><u></u></h4>
-        <p class="card-text"><i></i></p>
-        <p class="card-text"><b><i></i></b></p>
-        <form action="#">
-        <input type="hidden"  name="pid" value="#"/>	
-        <button type="submit" class="btn btn-primary">Proceed</button>
-       </form>
-      </div>
-    </div>
-  </div>
-   <div class="col-sm">
-    <div class="card">
-    <img class="card-img-top" src="myimages/news.png"  alt="Card image cap" height="150px" width="200px">
-      <div class="card-body">
-        <h4 class="card-title"><u></u></h4>
-        <p class="card-text"><i></i></p>
-        <p class="card-text"><b><i></i></b></p>
-        <form action="#">	
-        <button type="submit" class="btn btn-primary">Proceed</button>
-       </form>
-      </div>
-    </div>
-  </div>
-   <div class="col-sm">
-    <div class="card">
-    <img class="card-img-top" src="myimages/music.png" alt="Card image cap" height="150px" width="200px">
-      <div class="card-body">
-        <h4 class="card-title"><u></u></h4>
-        <p class="card-text"><i></i></p>
-        <p class="card-text"><b><i></i></b></p>
-        <form action="#">
-        <input type="hidden"  name="pid" value="#"/>	
-        <button type="submit" class="btn btn-primary">Proceed</button>
-       </form>
-      </div>
-    </div>
-  </div>
-  </div>
-</div>
-</div>
-<br>
-<div class="card">
-  <div class="card-header">
-    Quote For the Day.
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>Imagination is more important than knowledge.Life is like riding a bicycle. To keep your balance you must keep moving.No problem can be solved from the same level of consciousness that created it.</p>
-      <footer class="blockquote-footer">Albert Einstein <cite title="Source Title"></cite></footer>
-    </blockquote>
-  </div>
-</div>
+<div class="se-pre-con"></div>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#"> <img src="myimages/club.jpg"
+			width="30" height="30" class="d-inline-block align-top" alt=""><b>
+			DSC_Crce</b>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="member.html">Members</a>
+				</li>
+				<li class="nav-item"><a class="nav-link disabled" href="Events.html">Events</a>
+				</li>
+				<li class="nav-item"><a class="nav-link disabled" href="contact.html">Contact
+						us</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Material </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="Documents.html">Documents</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="Questions.html">Problem Set</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="reference.html">References</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
+	<hr>
+	<div class=carosel>
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0"
+					class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+			</ol>
+			<div id="one" class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
+						src="myimages/gradle.png" height="350px" width="350px"
+						alt="First slide">
+					<div class="carousel-caption d-none d-md-block">
+						<h3>
+							<b><font color="black">Android Studio</font></b>
+						</h3>
+						<p>
+							<font color="black"><i>Learn various shortcuts Related
+									to android studio</i> </font>
+						</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
+						src="myimages/android11.png" height="350px" width="350px"
+						alt="Second slide">
+					<div class="carousel-caption d-none d-md-block">
+						<h3>
+							<b><font color="white">Android</font></b>
+						</h3>
+						<p>
+							<font color="white"><i>Learn to make android app's to
+									fulfill your needs</i> </font>
+						</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
+						src="myimages/firebase.png" height="350px" width="350px"
+						alt="Third slide">
+					<div class="carousel-caption d-none d-md-block">
+						<h3>
+							<b><font color="black">Firebase</font></b>
+						</h3>
+						<p>
+							<font color="black"><i>Learn to use the infrastructure
+									provided by firebase</i> </font>
+						</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
+						src="myimages/java12.png" height="350px" width="350px"
+						alt="Third slide">
+					<div class="carousel-caption d-none d-md-block">
+						<h3>
+							<b><font color="black">Java</font></b>
+						</h3>
+						<p>
+							<font color="black"><i>Learn java to get started with
+									android</i> </font>
+						</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
+						src="myimages/sqllite.jpg" height="350px" width="350px"
+						alt="Third slide">
+					<div class="carousel-caption d-none d-md-block">
+						<h3>
+							<b><font color="black">sqlite</font></b>
+						</h3>
+						<p>
+							<font color="black"><i>Learn to use sqlite Database</i> </font>
+						</p>
+					</div>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators"
+				role="button" data-slide="prev"> <span
+				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+				role="button" data-slide="next"> <span
+				class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+	<div class="row">
+	<div class="col-sm-7">
+	<div id="sharp" class="card">
+		<div class="card-body" style="width: 100%;">
+				<p class="text"><b>What actually is Developer Student Club?</b></p>
+				<p class="text">Developer Student Club (DSC) is a Google
+					Developers program for university students, designed to help them
+					build their mobile and web development skills and knowledge. It is
+					open to any student, ranging from novice developers who are just
+					starting, to advanced developers who want to further their skills.
+					It is intended to be a space for students to learn and collaborate
+					as they solve mobile and web development problems.</p>
+			</div>
+			</div>
+			</div>
+			<div class="col-sm-5">
+			<div id="sharp" class="card">
+			<div class="card-body">
+				<div class="card">
+					<img class="card-img-top" src="myimages/tp.png"
+						alt="Card image cap" height="295px" width="200px">
+					<!-- <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+		    </div>-->
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<br>
+	<div class="container">
+	<div class="row">
+	<div class="col-sm-7">
+	<div id="sharp" class="card">
+		<div class="card-body" style="width: 100%;">
+				<p class="text"><b>How unique is DSC at Fr. Conceicao Rodrigues
+					College of Engineering ?</b></p>
+				<p class="text">DSC_Crce is one among the 185 Developer Student
+					Clubs throughout the nation. This limited number of clubs have been
+					set up at different academic institutions like IITs , NITs ,
+					Universities , Deemed Universities and other colleges. We are lucky
+					and proud to have such prestigious club at Crce.</p>
+			</div>
+			</div>
+			</div>
+			<div class="col-sm-5">
+			<div id="sharp" class="card">
+			<div class="card-body">
+				<div class="card">
+					<img class="card-img-top" src="myimages/frcrce.png"
+						alt="Card image cap" height="265px" width="200px">
+					<!-- <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+		    </div>-->
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<br>
+	<div class="container">
+	<div class="row">
+	<div class="col-sm-7">
+	<div id="sharp" class="card">
+		<div class="card-body" style="width: 100%;">
+				<p class="text"><b>What do we do ?</b></p>
+				<p class="text">We are on a mission to empower the student
+					community ! We are going to create an impact journey through a set
+					of following activities .</p>
+			<ul class="text1">
+					<li>Organize training sessions like workshops, seminars and TECH talks.</li>
+					<li>Provide study sessions to encourage self learning.</li>
+					<li>Build solutions for local businesses.</li>
+					<li>Host showcases to display developed solutions .</li>
+			</ul>
+			</div>
+			</div>
+			</div>
+			<div class="col-sm-5">
+			<div id="sharp" class="card">
+			<div class="card-body">
+				<div class="card">
+					<img class="card-img-top" src="myimages/group.png"
+						alt="Card image cap" height="315px" width="200px">
+					<!-- <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+		    </div>-->
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<br>
+	<div>
+		<div class="container-fluid">
+			<div class="row" id="one">
+				<div class="col-sm-4">
+					<div class="card">
+						<img class="card-img-top" src="myimages/java.png"
+							alt="Card image cap" height="150px" width="200px">
+						<div class="card-body">
+							<h4 class="card-title">
+								<u></u>
+							</h4>
+							<p class="card-text">
+								<i></i>
+							</p>
+							<p class="card-text">
+								<b><i></i></b>
+							</p>
+							<button onclick="window.location.href='reference.html'" class="btn btn-primary">Go !!</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="card">
+						<img class="card-img-top" src="myimages/sqllite.jpg"
+							alt="Card image cap" height="150px" width="200px">
+						<div class="card-body">
+							<h4 class="card-title">
+								<u></u>
+							</h4>
+							<p class="card-text">
+								<i></i>
+							</p>
+							<p class="card-text">
+								<b><i></i></b>
+							</p>
+							<button onclick="window.location.href='reference.html'" class="btn btn-primary">Go !!</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="card">
+						<img class="card-img-top" src="myimages/android.jpg"
+							alt="Card image cap" height="150px" width="200px">
+						<div class="card-body">
+							<h4 class="card-title">
+								<u></u>
+							</h4>
+							<p class="card-text">
+								<i></i>
+							</p>
+							<p class="card-text">
+								<b><i></i></b>
+							</p>
+								<button onclick="window.location.href='reference.html'" class="btn btn-primary">Go !!</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<footer class="footer">
+		<div class="container text-center">
+			<hr>
+			<hr>
+			<div class="row">
+				<div class="col-lg-12">
+					<ul class="nav nav-pills nav-justified">
+						<li class="sep">
+							<button
+								onclick="window.location.href='https://developers.google.com/training/programs/india'"
+								class="btn btn-primary">DSC official page</button>
+						</li>
+						<li class="sep">
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#exampleModal">Terms And Services.</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<br>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Disclaimer</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">The Content on this page is created by Ashutosh Mishra
+					and managed by DSC_Crce.</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
