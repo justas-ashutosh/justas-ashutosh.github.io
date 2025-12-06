@@ -1,397 +1,162 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="icon" href="http://gyan.fragnel.edu.in:2222/moodle/data/agnel.jpg" type="image/jpg" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<title>Developer Student Club</title>
-<style type="text/css">
-body{
-  background-image: url(http://forums.crackberry.com/attachments/blackberry-10-wallpapers-f308/137432d1361639896t-z10-wallpaper-set-z10-music.jpg);
-  background-repeat:repeat;
-}
-.sep {
-	text-decoration: none;
-	color: white;
-	font-size: 20px;
-	margin: 10px;
-	display: inline-block;
-}
-.text {
-	text-decoration: none;
-	color: black;
-	font-size: 20px;
-	font-family: sans-serif;
-	text-align: center;
-}
-
-.text1 {
-	text-decoration: none;
-	color: black;
-	font-size: 20px;
-	font-family: sans-serif;
-}
-
-#sharp {
-	padding: 4px;
-	margin: 7px;
-	border: 2px solid gray;
-}
-
-.cc {
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
-	margin: 15px;
-	padding: 10px;
-}
-.carosel {
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
-	margin: 15px;
-	padding: 10px;
-}
-</style>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Trying Things Out</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<style>
+		body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: #E0E1DD;
+            color: #0D1B2A;
+        }
+        header {
+            background: #0D1B2A;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 48px;
+            margin: 0;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        section {
+            width: 85%;
+            max-width: 1100px;
+            margin: 60px auto;
+        }
+        .summary {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .tech-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .tech-icons span {
+            background: #00A8E8;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .cta {
+            text-align: center;
+            margin: 60px 0;
+        }
+        .cta a {
+            background: #00A8E8;
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+	</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#"> <img src="myimages/club.jpg"
-			width="30" height="30" class="d-inline-block align-top" alt=""><b>
-			DSC_Crce</b>
-		</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="member.html">Members</a>
-				</li>
-				<li class="nav-item"><a class="nav-link disabled" href="Events.html">Events</a>
-				</li>
-				<li class="nav-item"><a class="nav-link disabled" href="contact.html">Contact
-						us</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Material </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="Documents.html">Documents</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="Questions.html">Problem Set</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="reference.html">References</a>
-					</div></li>
-			</ul>
+<header>
+	<h1>Ashutosh Mishra</h1>
+	<p>Software Engineer | Problem Solver | Builder</p>
+</header>
+
+<section class="summary">
+	<h2>Professional Summary</h2>
+	<p>
+		A short description about who you are, what you do, and what you bring to the table.
+		This will highlight your professional background in 3–4 crisp lines.
+	</p>
+</section>
+
+<section>
+	<h2>Work Experience</h2>
+	<div class="experience-grid">
+
+		<div class="card">
+			<h3>Job Title – Company</h3>
+			<p><strong>2022 – Present</strong></p>
+			<p>Short description of what you worked on, your role, achievements and outcomes.</p>
 		</div>
-	</nav>
-	<hr>
-	<div class=carosel>
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-			</ol>
-			<div id="one" class="carousel-inner">
-				<div class="carousel-item active">
-					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
-						src="myimages/gradle.png" height="350px" width="350px"
-						alt="First slide">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>
-							<b><font color="black">Android Studio</font></b>
-						</h3>
-						<p>
-							<font color="black"><i>Learn various shortcuts Related
-									to android studio</i> </font>
-						</p>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
-						src="myimages/android11.png" height="350px" width="350px"
-						alt="Second slide">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>
-							<b><font color="white">Android</font></b>
-						</h3>
-						<p>
-							<font color="white"><i>Learn to make android app's to
-									fulfill your needs</i> </font>
-						</p>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
-						src="myimages/firebase.png" height="350px" width="350px"
-						alt="Third slide">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>
-							<b><font color="black">Firebase</font></b>
-						</h3>
-						<p>
-							<font color="black"><i>Learn to use the infrastructure
-									provided by firebase</i> </font>
-						</p>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
-						src="myimages/java12.png" height="350px" width="350px"
-						alt="Third slide">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>
-							<b><font color="black">Java</font></b>
-						</h3>
-						<p>
-							<font color="black"><i>Learn java to get started with
-									android</i> </font>
-						</p>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" class="img-fluid" alt="Responsive image"
-						src="myimages/sqllite.jpg" height="350px" width="350px"
-						alt="Third slide">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>
-							<b><font color="black">sqlite</font></b>
-						</h3>
-						<p>
-							<font color="black"><i>Learn to use sqlite Database</i> </font>
-						</p>
-					</div>
-				</div>
-			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
+
+		<div class="card">
+			<h3>Job Title – Company</h3>
+			<p><strong>2020 – 2022</strong></p>
+			<p>Description of your responsibilities and major contributions.</p>
 		</div>
-	</div>
-	<br>
-	<div class="container">
-	<div class="row">
-	<div class="col-sm-7">
-	<div id="sharp" class="card">
-		<div class="card-body" style="width: 100%;">
-				<p class="text"><b>What actually is Developer Student Club?</b></p>
-				<p class="text">Developer Student Club (DSC) is a Google
-					Developers program for university students, designed to help them
-					build their mobile and web development skills and knowledge. It is
-					open to any student, ranging from novice developers who are just
-					starting, to advanced developers who want to further their skills.
-					It is intended to be a space for students to learn and collaborate
-					as they solve mobile and web development problems.</p>
-			</div>
-			</div>
-			</div>
-			<div class="col-sm-5">
-			<div id="sharp" class="card">
-			<div class="card-body">
-				<div class="card">
-					<img class="card-img-top" src="myimages/tp.png"
-						alt="Card image cap" height="295px" width="200px">
-					<!-- <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		    </div>-->
-				</div>
-			</div>
-			</div>
+
+		<div class="card">
+			<h3>Job Title – Company</h3>
+			<p><strong>2018 – 2020</strong></p>
+			<p>Description of work performed and key highlights.</p>
 		</div>
+
 	</div>
+</section>
+
+<section>
+	<h2>Tech Stack</h2>
+	<div class="tech-icons">
+		<span>Java</span>
+		<span>Spring Boot</span>
+		<span>Python</span>
+		<span>React</span>
+		<span>AWS</span>
+		<span>Docker</span>
+		<span>PostgreSQL</span>
+		<span>Git</span>
 	</div>
-	<br>
-	<div class="container">
-	<div class="row">
-	<div class="col-sm-7">
-	<div id="sharp" class="card">
-		<div class="card-body" style="width: 100%;">
-				<p class="text"><b>How unique is DSC at Fr. Conceicao Rodrigues
-					College of Engineering ?</b></p>
-				<p class="text">DSC_Crce is one among the 185 Developer Student
-					Clubs throughout the nation. This limited number of clubs have been
-					set up at different academic institutions like IITs , NITs ,
-					Universities , Deemed Universities and other colleges. We are lucky
-					and proud to have such prestigious club at Crce.</p>
-			</div>
-			</div>
-			</div>
-			<div class="col-sm-5">
-			<div id="sharp" class="card">
-			<div class="card-body">
-				<div class="card">
-					<img class="card-img-top" src="myimages/frcrce.png"
-						alt="Card image cap" height="265px" width="200px">
-					<!-- <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		    </div>-->
-				</div>
-			</div>
-			</div>
+</section>
+
+<section>
+	<h2>Case Studies / Projects</h2>
+	<div class="experience-grid">
+
+		<div class="card">
+			<h3>Project Title</h3>
+			<p><strong>Problem:</strong> State the problem you solved.</p>
+			<p><strong>Solution:</strong> How you solved it, tools used.</p>
+			<p><strong>Result:</strong> The measurable impact.</p>
 		</div>
-	</div>
-	</div>
-	<br>
-	<div class="container">
-	<div class="row">
-	<div class="col-sm-7">
-	<div id="sharp" class="card">
-		<div class="card-body" style="width: 100%;">
-				<p class="text"><b>What do we do ?</b></p>
-				<p class="text">We are on a mission to empower the student
-					community ! We are going to create an impact journey through a set
-					of following activities .</p>
-			<ul class="text1">
-					<li>Organize training sessions like workshops, seminars and TECH talks.</li>
-					<li>Provide study sessions to encourage self learning.</li>
-					<li>Build solutions for local businesses.</li>
-					<li>Host showcases to display developed solutions .</li>
-			</ul>
-			</div>
-			</div>
-			</div>
-			<div class="col-sm-5">
-			<div id="sharp" class="card">
-			<div class="card-body">
-				<div class="card">
-					<img class="card-img-top" src="myimages/group.png"
-						alt="Card image cap" height="315px" width="200px">
-					<!-- <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		    </div>-->
-				</div>
-			</div>
-			</div>
+
+		<div class="card">
+			<h3>Project Title</h3>
+			<p><strong>Problem:</strong> Description of the problem.</p>
+			<p><strong>Solution:</strong> What you built and how.</p>
+			<p><strong>Result:</strong> Final impact.</p>
 		</div>
+
 	</div>
-	</div>
-	<br>
-	<div>
-		<div class="container-fluid">
-			<div class="row" id="one">
-				<div class="col-sm-4">
-					<div class="card">
-						<img class="card-img-top" src="myimages/java.png"
-							alt="Card image cap" height="150px" width="200px">
-						<div class="card-body">
-							<h4 class="card-title">
-								<u></u>
-							</h4>
-							<p class="card-text">
-								<i></i>
-							</p>
-							<p class="card-text">
-								<b><i></i></b>
-							</p>
-							<button onclick="window.location.href='reference.html'" class="btn btn-primary">Go !!</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="card">
-						<img class="card-img-top" src="myimages/sqllite.jpg"
-							alt="Card image cap" height="150px" width="200px">
-						<div class="card-body">
-							<h4 class="card-title">
-								<u></u>
-							</h4>
-							<p class="card-text">
-								<i></i>
-							</p>
-							<p class="card-text">
-								<b><i></i></b>
-							</p>
-							<button onclick="window.location.href='reference.html'" class="btn btn-primary">Go !!</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="card">
-						<img class="card-img-top" src="myimages/android.jpg"
-							alt="Card image cap" height="150px" width="200px">
-						<div class="card-body">
-							<h4 class="card-title">
-								<u></u>
-							</h4>
-							<p class="card-text">
-								<i></i>
-							</p>
-							<p class="card-text">
-								<b><i></i></b>
-							</p>
-								<button onclick="window.location.href='reference.html'" class="btn btn-primary">Go !!</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>
-	<footer class="footer">
-		<div class="container text-center">
-			<hr>
-			<hr>
-			<div class="row">
-				<div class="col-lg-12">
-					<ul class="nav nav-pills nav-justified">
-						<li class="sep">
-							<button
-								onclick="window.location.href='https://developers.google.com/training/programs/india'"
-								class="btn btn-primary">DSC official page</button>
-						</li>
-						<li class="sep">
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#exampleModal">Terms And Services.</button>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<br>
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Disclaimer</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">The Content on this page is created by Ashutosh Mishra
-					and managed by DSC_Crce.</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+</section>
+
+<div class="cta">
+	<a href="#">Download Resume</a>
+</div>
+
 </body>
 </html>
