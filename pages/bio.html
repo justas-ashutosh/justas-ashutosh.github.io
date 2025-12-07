@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bio — Shutter</title>
+
+    <!-- External Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==================== THEME VARIABLES ==================== */
+        :root {
+            --bg: #0b0b0b;
+            --panel: #0f0f10;
+            --muted: rgba(255, 255, 255, 0.75);
+            --accent: #ff5e57;
+            --frame-bg: #0a0a0a;
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --card-bg: #1a1a1c;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="light"] {
+            --bg: #f5f6f8;
+            --panel: #ffffff;
+            --muted: rgba(10, 10, 10, 0.6);
+            --accent: #1e88e5;
+            --frame-bg: #ffffff;
+            --text: #0b0b0b;
+            --glass: rgba(0, 0, 0, 0.03);
+            --card-bg: #ffffff;
+            --border: rgba(0, 0, 0, 0.1);
+        }
+
+        /* ==================== BASE STYLES ==================== */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background: linear-gradient(180deg, var(--bg), #000000 100%);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h2 {
+            color: var(--text);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* ==================== HEADER & NAVIGATION ==================== */
+        .topbar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 1050;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+            background: rgba(11, 11, 11, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        [data-theme="light"] .topbar {
+            background: rgba(245, 246, 248, 0.7);
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--glass);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== LAYOUT ==================== */
+        .main-container {
+            padding: 120px 32px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 100px 20px 60px;
+            }
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .bio-hero {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 992px) {
+            .bio-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+        }
+
+        .bio-image-wrapper {
+            position: relative;
+        }
+
+        .bio-image {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 3/4;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 4px solid var(--border);
+        }
+
+        @media (max-width: 992px) {
+            .bio-image {
+                margin: 0 auto;
+            }
+        }
+
+        .bio-image-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            top: -20px;
+            left: -20px;
+            z-index: -1;
+        }
+
+        .bio-content h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .bio-subtitle {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .bio-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .bio-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* ==================== STATS SECTION ==================== */
+        .stats-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 80px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .stats-section {
+                padding: 30px 20px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* ==================== CONTENT SECTIONS ==================== */
+        .content-section {
+            margin-bottom: 60px;
+        }
+
+        .content-section h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--text);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .content-section h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        @media (max-width: 992px) {
+            .content-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ==================== TIMELINE ==================== */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 10px;
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                padding-left: 40px;
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 11px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-dot {
+                left: 1px;
+            }
+        }
+
+        .timeline-year {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .timeline-description {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ==================== SKILLS SECTION ==================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .skill-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .skill-description {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ==================== CTA SECTION ==================== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #d44942 100%);
+            padding: 60px 50px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 80px;
+            box-shadow: 0 15px 50px rgba(255, 94, 87, 0.3);
+        }
+
+        .cta-section h3 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section h3::after {
+            display: none;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 40px;
+            background: white;
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 40px 30px;
+            }
+
+            .cta-section h3 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ==================== OFFCANVAS STYLING ==================== */
+        .offcanvas {
+            background: var(--panel);
+        }
+
+        .offcanvas-title {
+            color: var(--text);
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .offcanvas .nav-link {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .offcanvas .nav-link:last-child {
+            border-bottom: none;
+        }
+
+        .btn-close {
+            filter: var(--bs-btn-close-white-filter);
+        }
+
+        [data-theme="light"] .btn-close {
+            filter: none;
+        }
+    </style>
+</head>
+<body>
+<!-- ==================== HEADER ==================== -->
+<header class="topbar">
+    <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-sm btn-outline-light d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">☰</button>
+        <div class="brand">SHUTTER</div>
+        <nav class="d-none d-lg-flex gap-3 ms-3">
+            <a class="nav-link" href="../index.html">Home</a>
+            <a class="nav-link" href="photos.html">Photos</a>
+            <a class="nav-link" href="blog.html">Blog</a>
+            <a class="nav-link" href="bio.html">Bio</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+        </nav>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <button id="themeBtn" class="theme-toggle">Toggle Theme</button>
+    </div>
+</header>
+
+<!-- ==================== MOBILE MENU ==================== -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">SHUTTER</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <nav class="nav flex-column">
+            <a class="nav-link" href="../index.html" data-bs-dismiss="offcanvas">Home</a>
+            <a class="nav-link" href="photos.html" data-bs-dismiss="offcanvas">Photos</a>
+            <a class="nav-link" href="blog.html" data-bs-dismiss="offcanvas">Blog</a>
+            <a class="nav-link" href="bio.html" data-bs-dismiss="offcanvas">Bio</a>
+            <a class="nav-link" href="contact.html" data-bs-dismiss="offcanvas">Contact</a>
+        </nav>
+    </div>
+</div>
+
+<!-- ==================== BIO SECTION ==================== -->
+<main class="main-container">
+    <!-- Hero Section -->
+    <section class="bio-hero">
+        <div class="bio-image-wrapper" data-aos="fade-right">
+            <div class="bio-image-decoration"></div>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Portrait" class="bio-image">
+        </div>
+        <div class="bio-content" data-aos="fade-left">
+            <h1>Alex Morrison</h1>
+            <p class="bio-subtitle">Photographer & Visual Storyteller</p>
+            <p class="lead">
+                Capturing fleeting moments since 2012. Based between New York and the world, I specialize in landscape, travel, and documentary photography.
+            </p>
+            <p>
+                My work has been featured in National Geographic, TIME Magazine, and The Guardian. I believe in the power of photography to tell stories that words cannot capture—to freeze time and preserve the raw beauty of our world.
+            </p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" data-aos="fade-up">
+        <div class="stats-grid" id="statsGrid"></div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="content-section" data-aos="fade-up">
+        <h3>Journey</h3>
+        <div class="timeline" id="timeline"></div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="content-section" data-aos="fade-up">
+        <h3>Expertise</h3>
+        <div class="skills-grid" id="skillsGrid"></div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-aos="fade-up">
+        <h3>Let's Create Together</h3>
+        <p>Available for commissions, collaborations, and travel projects. Let's bring your vision to life through compelling visual narratives.</p>
+        <a href="contact.html" class="cta-button">Get in Touch</a>
+    </section>
+</main>
+
+<!-- ==================== EXTERNAL SCRIPTS ==================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+    // ==================== BIO DATA ====================
+    const STATS = [
+        { number: "12+", label: "Years Experience" },
+        { number: "500+", label: "Projects Completed" },
+        { number: "50+", label: "Countries Visited" },
+        { number: "100K+", label: "Photos Captured" }
+    ];
+
+    const TIMELINE = [
+        {
+            year: "2024",
+            title: "Solo Exhibition in Tokyo",
+            description: "Showcased 'Urban Solitude' series at the Metropolitan Gallery, featuring intimate portraits of city life across Asia."
+        },
+        {
+            year: "2022",
+            title: "National Geographic Feature",
+            description: "Published feature story on climate change in the Arctic, documenting the changing landscapes and communities."
+        },
+        {
+            year: "2019",
+            title: "Documentary Film Release",
+            description: "Released 'Horizons,' a visual documentary exploring remote communities and their connection to the land."
+        },
+        {
+            year: "2016",
+            title: "First International Award",
+            description: "Won the Sony World Photography Award for landscape photography, recognition that opened doors globally."
+        },
+        {
+            year: "2012",
+            title: "Professional Journey Begins",
+            description: "Left corporate career to pursue photography full-time. Started with local projects and street photography."
+        }
+    ];
+
+    const SKILLS = [
+        {
+            icon: "📷",
+            name: "Landscape Photography",
+            description: "Capturing the raw beauty of nature and dramatic environments worldwide."
+        },
+        {
+            icon: "🌆",
+            name: "Urban & Street",
+            description: "Documenting authentic moments and stories in city environments."
+        },
+        {
+            icon: "👤",
+            name: "Portrait & Editorial",
+            description: "Creating compelling portraits that reveal character and emotion."
+        },
+        {
+            icon: "✈️",
+            name: "Travel Documentation",
+            description: "Visual storytelling across cultures and destinations."
+        },
+        {
+            icon: "🎬",
+            name: "Video & Film",
+            description: "Cinematic storytelling through motion pictures and documentaries."
+        },
+        {
+            icon: "✨",
+            name: "Post-Production",
+            description: "Expert editing and retouching using Adobe Creative Suite."
+        }
+    ];
+
+    // ==================== RENDER FUNCTIONS ====================
+
+    function renderStats() {
+        const statsGrid = document.getElementById('statsGrid');
+        if (!statsGrid) return;
+
+        statsGrid.innerHTML = '';
+
+        STATS.forEach((stat, index) => {
+            const statItem = document.createElement('div');
+            statItem.className = 'stat-item';
+            statItem.setAttribute('data-aos', 'zoom-in');
+            statItem.setAttribute('data-aos-delay', (index * 100).toString());
+
+            statItem.innerHTML = `
+                <span class="stat-number">${stat.number}</span>
+                <span class="stat-label">${stat.label}</span>
+            `;
+
+            statsGrid.appendChild(statItem);
+        });
+    }
+
+    function renderTimeline() {
+        const timeline = document.getElementById('timeline');
+        if (!timeline) return;
+
+        timeline.innerHTML = '';
+
+        TIMELINE.forEach((item, index) => {
+            const timelineItem = document.createElement('div');
+            timelineItem.className = 'timeline-item';
+            timelineItem.setAttribute('data-aos', 'fade-left');
+            timelineItem.setAttribute('data-aos-delay', (index * 100).toString());
+
+            timelineItem.innerHTML = `
+                <div class="timeline-dot"></div>
+                <div class="timeline-year">${item.year}</div>
+                <div class="timeline-title">${item.title}</div>
+                <div class="timeline-description">${item.description}</div>
+            `;
+
+            timeline.appendChild(timelineItem);
+        });
+    }
+
+    function renderSkills() {
+        const skillsGrid = document.getElementById('skillsGrid');
+        if (!skillsGrid) return;
+
+        skillsGrid.innerHTML = '';
+
+        SKILLS.forEach((skill, index) => {
+            const skillCard = document.createElement('div');
+            skillCard.className = 'skill-card';
+            skillCard.setAttribute('data-aos', 'fade-up');
+            skillCard.setAttribute('data-aos-delay', (index * 100).toString());
+
+            skillCard.innerHTML = `
+                <span class="skill-icon">${skill.icon}</span>
+                <div class="skill-name">${skill.name}</div>
+                <div class="skill-description">${skill.description}</div>
+            `;
+
+            skillsGrid.appendChild(skillCard);
+        });
+    }
+
+    // ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+    function initTheme() {
+        const themeBtn = document.getElementById('themeBtn');
+        if (!themeBtn) return;
+
+        // Set theme and persist to localStorage
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('site-theme', theme);
+            themeBtn.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+        }
+
+        // Toggle theme on button click
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('site-theme') || 'dark';
+        setTheme(savedTheme);
+    }
+
+    // ==================== SMOOTH SCROLL FOR NAVIGATION ====================
+
+    function initNavigation() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+
+    // ==================== COUNTER ANIMATION ====================
+
+    function animateCounters() {
+        const counters = document.querySelectorAll('.stat-number');
+
+        counters.forEach(counter => {
+            const target = counter.textContent;
+            const numericPart = parseInt(target.replace(/[^0-9]/g, ''));
+            const suffix = target.replace(/[0-9]/g, '');
+
+            let current = 0;
+            const increment = numericPart / 50;
+            const duration = 2000;
+            const stepTime = duration / 50;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= numericPart) {
+                    counter.textContent = numericPart + suffix;
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current) + suffix;
+                }
+            }, stepTime);
+        });
+    }
+
+    // ==================== INITIALIZATION ====================
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize AOS (Animate On Scroll)
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 600,
+                easing: 'ease-out-back',
+                once: true,
+                mirror: false,
+                offset: 100
+            });
+        }
+
+        // Render all sections
+        renderStats();
+        renderTimeline();
+        renderSkills();
+
+        // Initialize theme and navigation
+        initTheme();
+        initNavigation();
+
+        // Animate counters when stats section comes into view
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(statsSection);
+        }
+    });
+</script>
+</body>
+</html>

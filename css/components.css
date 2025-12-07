@@ -1,0 +1,207 @@
+.topbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    background: transparent;
+    backdrop-filter: blur(6px);
+}
+
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.nav-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--glass);
+    border-color: var(--accent);
+}
+
+/* Photo Frame (Polaroid Style) */
+.photo-frame {
+    break-inside: avoid;
+    background: var(--card-bg);
+    padding: 15px 15px 45px;
+    border-radius: 4px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    margin: 0 0 1.5rem;
+    transform: rotate(-1.5deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.photo-frame:hover {
+    transform: rotate(0deg) scale(1.025);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.photo-frame img {
+    width: 100%;
+    display: block;
+    border-radius: 2px;
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    color: var(--text-color);
+    opacity: 0.85;
+    font-style: italic;
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Photo Meta Strip */
+.photo-meta {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--glass), transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 10px;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.meta-year {
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.meta-location {
+    font-weight: 400;
+    color: var(--muted);
+}
+
+.meta-reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.25s;
+}
+
+.photo-frame:hover .meta-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.photo-frame.portrait .photo-meta {
+    right: auto;
+    left: 0;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    height: 54px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+}
+
+/* Blog Card */
+.blog-card {
+    background: var(--panel);
+    padding: 18px;
+    border-radius: 8px;
+    color: var(--text);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Modal Styles */
+.modal-img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.postcard-modal {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    background: url('https://i.imgur.com/2u7f7vE.png');
+    background-size: cover;
+    background-blend-mode: multiply;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+}
+
+.postcard-modal::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 90px;
+    height: 90px;
+    background: url('https://i.imgur.com/6lrfG7S.png') no-repeat center/contain;
+    opacity: 0.85;
+    transform: rotate(8deg);
+    pointer-events: none;
+}
+
+.postcard-text {
+    flex: 1;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.04) 0px,
+        rgba(0, 0, 0, 0.04) 1px,
+        transparent 1px,
+        transparent 28px
+    );
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.postcard-image {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .postcard-modal {
+        flex-direction: column;
+    }
+}
