@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Shutter — Photo Gallery</title>
+
+	<!-- External Libraries -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+	<style>
+		/* ==================== THEME VARIABLES ==================== */
+        :root {
+            --bg: #0b0b0b;
+            --panel: #0f0f10;
+            --muted: rgba(255, 255, 255, 0.75);
+            --accent: #ff5e57;
+            --frame-bg: #0a0a0a;
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        [data-theme="light"] {
+            --bg: #f5f6f8;
+            --panel: #ffffff;
+            --muted: rgba(10, 10, 10, 0.6);
+            --accent: #1e88e5;
+            --frame-bg: #ffffff;
+            --text: #0b0b0b;
+            --glass: rgba(0, 0, 0, 0.03);
+        }
+
+        /* ==================== BASE STYLES ==================== */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background: linear-gradient(180deg, var(--bg), #000000 100%);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h1 {
+            color: var(--text);
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
+            font-size: 3.5rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        /* ==================== HEADER & NAVIGATION ==================== */
+        .topbar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 1050;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+            background: rgba(11, 11, 11, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .topbar {
+            background: rgba(245, 246, 248, 0.7);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--glass);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .main-container {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .slideshow-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: absolute;
+            inset: 0;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Overlay gradient for better text readability */
+        .slideshow-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.3),
+                rgba(0, 0, 0, 0.5)
+            );
+            z-index: 1;
+        }
+
+        /* Hero content */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 40px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+            box-shadow: 0 10px 30px rgba(255, 94, 87, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 94, 87, 0.4);
+            color: white;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator::before {
+            content: "↓";
+            font-size: 2rem;
+            color: var(--text);
+            opacity: 0.7;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0.4;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .brand {
+                font-size: 18px;
+            }
+
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-link {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ==================== OFFCANVAS STYLING ==================== */
+        .offcanvas {
+            background: var(--panel);
+        }
+
+        .offcanvas-title {
+            color: var(--text);
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .offcanvas .nav-link {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .offcanvas .nav-link:last-child {
+            border-bottom: none;
+        }
+
+        .btn-close {
+            filter: var(--bs-btn-close-white-filter);
+        }
+
+        [data-theme="light"] .btn-close {
+            filter: none;
+        }
+	</style>
+</head>
+<body>
+<!-- ==================== HEADER ==================== -->
+<header class="topbar">
+	<div class="d-flex align-items-center gap-3">
+		<button class="btn btn-sm btn-outline-light d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">☰</button>
+		<div class="brand">SHUTTER</div>
+		<nav class="d-none d-lg-flex gap-3 ms-3">
+			<a class="nav-link" href="home.html">Home</a>
+			<a class="nav-link" href="pages/photos.html">Photos</a>
+			<a class="nav-link" href="pages/blog.html">Blog</a>
+			<a class="nav-link" href="pages/bio.html">Bio</a>
+			<a class="nav-link" href="pages/contact.html">Contact</a>
+		</nav>
+	</div>
+	<div class="d-flex align-items-center gap-2">
+		<button id="themeBtn" class="theme-toggle">Toggle Theme</button>
+	</div>
+</header>
+
+<!-- ==================== MOBILE MENU ==================== -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+	<div class="offcanvas-header">
+		<h5 class="offcanvas-title">SHUTTER</h5>
+		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+	</div>
+	<div class="offcanvas-body">
+		<nav class="nav flex-column">
+			<a class="nav-link" href="home.html" data-bs-dismiss="offcanvas">Home</a>
+			<a class="nav-link" href="pages/photos.html" data-bs-dismiss="offcanvas">Photos</a>
+			<a class="nav-link" href="pages/blog.html" data-bs-dismiss="offcanvas">Blog</a>
+			<a class="nav-link" href="pages/bio.html" data-bs-dismiss="offcanvas">Bio</a>
+			<a class="nav-link" href="pages/contact.html" data-bs-dismiss="offcanvas">Contact</a>
+		</nav>
+	</div>
+</div>
+
+<!-- ==================== HERO SLIDESHOW SECTION ==================== -->
+<main class="main-container">
+	<section class="slideshow-section">
+		<div class="slideshow-container">
+			<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=80');"></div>
+			<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1499084732479-de2c02d45fc4?auto=format&fit=crop&w=1500&q=80');"></div>
+			<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1500&q=80');"></div>
+		</div>
+
+		<div class="hero-content">
+			<div class="container">
+				<h1 data-aos="fade-up">Photography that breathes</h1>
+				<p data-aos="fade-up" data-aos-delay="200">A curated gallery of moments frozen in time — capturing the world's beauty one frame at a time.</p>
+				<a href="pages/photos.html" class="cta-button" data-aos="fade-up" data-aos-delay="400">Explore Gallery</a>
+			</div>
+		</div>
+
+		<div class="scroll-indicator"></div>
+	</section>
+</main>
+
+<!-- ==================== EXTERNAL SCRIPTS ==================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+	// ==================== SLIDESHOW DATA ====================
+    const SLIDESHOW_IMAGES = [
+        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=80',
+        'https://images.unsplash.com/photo-1499084732479-de2c02d45fc4?auto=format&fit=crop&w=1500&q=80',
+        'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1500&q=80'
+    ];
+
+    // ==================== SLIDESHOW FUNCTIONALITY ====================
+    let slideIndex = 0;
+
+    function initSlideshow() {
+        const slides = document.querySelectorAll('.slide');
+
+        if (slides.length === 0) return;
+
+        // Show slides function with fade transition
+        function showSlides() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slideIndex = (slideIndex + 1) % slides.length;
+            slides[slideIndex].classList.add('active');
+        }
+
+        // Initialize first slide
+        slides[0].classList.add('active');
+
+        // Auto-advance every 5 seconds
+        setInterval(showSlides, 5000);
+    }
+
+    // ==================== THEME TOGGLE FUNCTIONALITY ====================
+    function initTheme() {
+        const themeBtn = document.getElementById('themeBtn');
+        if (!themeBtn) return;
+
+        // Set theme and persist to localStorage
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('site-theme', theme);
+            themeBtn.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+        }
+
+        // Toggle theme on button click
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('site-theme') || 'dark';
+        setTheme(savedTheme);
+    }
+
+    // ==================== PARALLAX EFFECT ====================
+    function initParallax() {
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const slideshow = document.querySelector('.slideshow-section');
+                    if (!slideshow) return;
+
+                    const scrollY = window.scrollY;
+                    const slideContainer = document.querySelector('.slideshow-container');
+
+                    if (slideContainer) {
+                        // Parallax effect - slower scroll for background
+                        slideContainer.style.transform = `translateY(${scrollY * 0.5}px)`;
+                    }
+
+                    ticking = false;
+                });
+
+                ticking = true;
+            }
+        });
+    }
+
+    // ==================== SMOOTH SCROLL FOR NAVIGATION ====================
+    function initNavigation() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+
+    // ==================== INITIALIZATION ====================
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize AOS (Animate On Scroll)
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out-cubic',
+                once: true,
+                mirror: false,
+                offset: 100
+            });
+        }
+
+        // Initialize all components
+        initSlideshow();
+        initTheme();
+        initParallax();
+        initNavigation();
+
+        // Add entrance animation to hero content
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+            setTimeout(() => {
+                heroContent.style.opacity = '1';
+            }, 100);
+        }
+    });
+
+    // ==================== PRELOAD IMAGES ====================
+    // Preload slideshow images for smooth transitions
+    SLIDESHOW_IMAGES.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+</script>
+</body>
+</html>
